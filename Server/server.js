@@ -1,11 +1,25 @@
 const express = require('express');
-const bcrypt = require('bcrypt');
-const path = require('path');
 const app = express();
+const path = require('path');
+const session = require('express-session')
 const mysql = require('mysql');
+const bcrypt = require('bcrypt');
+
+
+
 
 app.use(express.json());
+
+app.use(session({
+  key :userId,
+  secret:'369369',
+  resave :false,
+  saveUninitialized :false
+}))
+
 app.use(express.static(path.join(__dirname, '..')));
+
+
 
 const db = mysql.createConnection({
   user: 'root',
