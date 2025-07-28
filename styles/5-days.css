@@ -1,0 +1,59 @@
+.forecast-section{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  margin:20px;
+  column-gap: 10px;
+}
+.forecast-emoji{
+  max-width:202px ;
+  height: 126px;
+  border-bottom:2px solid rgb(216, 216, 216);
+  padding-bottom: 10px;
+}
+.forecast-item{
+  border:1px solid gray;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  padding: 15px;
+  justify-content: center;
+  align-items: center;
+    box-shadow: 1px 1px 14px rgba(0,0,0,0.5);
+}
+
+.forecast-infos{
+  display: flex;
+  font-size: 16px;
+}
+
+
+.day{
+  font-size: 18px;
+}
+
+.icony{
+  width: 20px;
+  
+}
+
+.icony-sp{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.sp{
+  margin-right:10px ;
+}
+
+
+.footer-content{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin:20px;
+  margin-top:80px;
+  font-size: 20px;
+  font-family: intel one mono;
+  text-shadow:1px 1px 14px rgba(0,0,0,0.5);;
+}

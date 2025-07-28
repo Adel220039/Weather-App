@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Intel+One+Mono:ital,wght@0,300..700;1,300..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/auth.css">
+</head>
+<body>
+  <div class="container">
+    <form class="login active">
+       <h2>Login</h2>
+      
+       <div class="boxInput">
+        <input class ="email-log" type="email" required>
+        <label> Email </label>
+       </div>
+
+       <div class="boxInput">
+        <input class ="password-log" type="password"  required>
+        <label> Password </label>
+       </div>
+
+
+      <button type="submit" class="sub-log">Login</button>
+      <div class="error"></div>
+      <p>Don't have an account? <a href="#" onclick="activeForm('.sign-up')">Register</a></p>
+    </form>
+  
+
+    <form class="sign-up ">
+      <h2>Register</h2>
+      <div class="boxInput">
+        <input class ="name" type="text"  required>
+        <label> Name </label>
+      </div>
+
+      <div class="boxInput">
+        <input class ="email" type="email" required>
+        <label> Email </label><br>
+
+      </div>
+
+      <div class="boxInput">
+        <input class ="password" type="password" required>
+        <label> Password </label>
+      </div>
+    
+    <button type="submit" class="sub-sin">Register</button>
+    <div class="error"></div>
+    <p>Already have an account? <a href="#" onclick="activeForm('.login')">Login</a></p>
+    </form>
+  </div>
+
+  <script  src="scripts/auth.js"></script>
+</body>
+</html>

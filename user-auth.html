@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Intel+One+Mono:ital,wght@0,300..700;1,300..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/all.css">
+  <link rel="stylesheet" href="styles/header.css">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/5-days.css">
+  <title>Weather App</title>
+</head>
+<body>
+
+  <header>
+    <a href="index.html"><div class="left-section">Weather App</div></a>
+    <div class="midd-section">
+      <input  type="search" placeholder="Search for a city ..." class="search-input error-shit" id="search-input">
+      <div id="suggestions" class="suggestions-dropdown"></div>
+      <button class="search-btn">
+        <img class="search-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSIjMDAwIiBkPSJtMTkuNiAyMWwtNi4zLTYuM3EtLjc1LjYtMS43MjUuOTVUOS41IDE2cS0yLjcyNSAwLTQuNjEyLTEuODg4VDMgOS41dDEuODg4LTQuNjEyVDkuNSAzdDQuNjEzIDEuODg4VDE2IDkuNXEwIDEuMS0uMzUgMi4wNzVUMTQuNyAxMy4zbDYuMyA2LjN6TTkuNSAxNHExLjg3NSAwIDMuMTg4LTEuMzEyVDE0IDkuNXQtMS4zMTItMy4xODdUOS41IDVUNi4zMTMgNi4zMTNUNSA5LjV0MS4zMTMgMy4xODhUOS41IDE0Ii8+PC9zdmc+" alt="Search">
+      </button>
+    </div>
+    <div class="right-section">
+      <a href="auth.html"><button class="login">Login</button></a>
+      <a href="auth.html?form=signup"><button class="register">Sign Up</button></a>
+    </div>
+    <div class="error"></div>
+  </header>
+
+  <main>
+    
+  </main>
+
+
+  <section class="forecast-section"></section>
+
+  <footer>
+    <div class="footer-content">
+      <p>Weather App | 4YA Products © 2025</p>
+    </div>
+  </footer>
+  
+  <script type="module" src="scripts/script.js"></script>
+  <script type="module" src="scripts/meh.js"></script>
+  <script  src="scripts/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": true,
+    "strings": true
+  },
+  "editor.suggestOnTriggerCharacters": false,
+  "editor.wordBasedSuggestionsMode": "off",
+  "editor.parameterHints.enabled": false,
+  "editor.inlineSuggest.enabled": false,
+  "typescript.suggest.enabled": false,
+  "javascript.suggest.enabled": false
+}
