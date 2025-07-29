@@ -22,11 +22,15 @@ const sessionStore = new MySQLStore({}, db)
 app.use(express.json());
 
 app.use(session({
-  key :'UserID',
-  secret:'369369',
-  store:sessionStore,
-  resave :false,
-  saveUninitialized :false
+  secret: '369369',
+  store: sessionStore, 
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: false, 
+    httpOnly: true,
+    maxAge: 24 * 60 * 60 * 1000 
+  }
 }))
 
 app.use(express.static(path.join(__dirname, '..')));
@@ -49,6 +53,10 @@ sessionStore.onReady().then(()=>{
 })
 
 app.get('/', (req, res) => {
+  
+  req.session.isAuth = true;
+
+  
   res.sendFile(path.join(__dirname, '../index.html'));
 });
 
@@ -135,13 +143,36 @@ app.post('/auth/login', async (req, res) => {
         return res.status(400).json({ error: 'Password is incorrect' });
       }
       
-      console.log('User logged in successfully');
-      res.status(200).json({ message: 'Login successful', user: { id: user.id, name: user.name, email: user.email } });
+      // Set session data
+      req.session.isAuth = true;
+      req.session.userId = user.id;
+      req.session.userName = user.name;
+      req.session.userEmail = user.email;
+      
+      req.session.save((err) => {
+        if (err) {
+          console.error('Session save error:', err);
+          return res.status(500).json({ error: 'Session error' });
+        }
+        console.log('User logged in successfully');
+        res.status(200).json({ message: 'Login successful', user: { id: user.id, name: user.name, email: user.email } });
+      });
     });
   } catch (error) {
     console.error('Login error:', error);
     res.status(500).json({ error: 'Server error' });
   }
+});
+
+// Session check endpoint
+app.get('/auth/session', (req, res) => {
+  res.json({
+    isAuth: req.session.isAuth || false,
+    userId: req.session.userId,
+    userName: req.session.userName,
+    userEmail: req.session.userEmail,
+    sessionId: req.sessionID
+  });
 });
 
 app.listen(3000, () => {
