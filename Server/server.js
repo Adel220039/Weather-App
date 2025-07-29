@@ -142,13 +142,7 @@ app.post('/auth/login', async (req, res) => {
       if (!isValidPassword) {
         return res.status(400).json({ error: 'Password is incorrect' });
       }
-      
-      // Set session data
-      req.session.isAuth = true;
-      req.session.userId = user.id;
-      req.session.userName = user.name;
-      req.session.userEmail = user.email;
-      
+
       req.session.save((err) => {
         if (err) {
           console.error('Session save error:', err);
@@ -167,10 +161,7 @@ app.post('/auth/login', async (req, res) => {
 // Session check endpoint
 app.get('/auth/session', (req, res) => {
   res.json({
-    isAuth: req.session.isAuth || false,
-    userId: req.session.userId,
-    userName: req.session.userName,
-    userEmail: req.session.userEmail,
+    isAuth: req.session.isAuth,
     sessionId: req.sessionID
   });
 });
