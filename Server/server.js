@@ -1,23 +1,12 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const session = require('express-session')
+const session = require('express-session');
 const mysql = require('mysql');
+const MySQLStore = require('express-mysql-session')(session);
 const bcrypt = require('bcrypt');
 
 
-
-
-app.use(express.json());
-
-app.use(session({
-  key :userId,
-  secret:'369369',
-  resave :false,
-  saveUninitialized :false
-}))
-
-app.use(express.static(path.join(__dirname, '..')));
 
 
 
@@ -28,6 +17,22 @@ const db = mysql.createConnection({
   database: 'weatherapp'
 });
 
+const sessionStore = new MySQLStore({}, db)
+
+app.use(express.json());
+
+app.use(session({
+  key :'UserID',
+  secret:'369369',
+  store:sessionStore,
+  resave :false,
+  saveUninitialized :false
+}))
+
+app.use(express.static(path.join(__dirname, '..')));
+
+
+
 // Test database connection
 db.connect((err) => {
   if (err) {
@@ -37,6 +42,12 @@ db.connect((err) => {
   console.log('Connected to MySQL database');
 });
 
+sessionStore.onReady().then(()=>{
+  console.log('MySQLStore ready')
+}).catch(err=>{
+  console.log(`Error: ${err}.`)
+})
+
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../index.html'));
 });
@@ -44,6 +55,9 @@ app.get('/', (req, res) => {
 app.get('/auth', (req, res) => {
   res.sendFile(path.join(__dirname, '../auth.html'));
 });
+
+
+
 
 // Registration endpoint
 app.post('/auth/register', async (req, res) => {
@@ -88,6 +102,8 @@ app.post('/auth/register', async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 });
+
+
 
 // Login endpoint
 app.post('/auth/login', async (req, res) => {
