@@ -83,16 +83,6 @@ header{
   opacity: 0.9;
 }
 
-.logout {
-  background-color: #ff4444;
-  color: white;
-  border: 1.5px solid #cc0000;
-}
-
-.logout:hover {
-  background-color: #cc0000;
-  opacity: 0.9;
-}
 
 
 .error{
@@ -112,12 +102,11 @@ header{
 
 
 .suggestions-dropdown {
+
   position: absolute;
   top: 50px;;
   background: #fff;
-  border-left: 1px solid #ccc;
-  border-right: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
+
   width: 250px;
   max-height: 200px;
   overflow-y: auto;
@@ -126,6 +115,8 @@ header{
   transform: translateX(-50%);
   margin-top: 2px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
 }
 .suggestion-item {
   padding: 8px 12px;

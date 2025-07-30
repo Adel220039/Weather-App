@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="styles/header.css">
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/5-days.css">
+  <link rel="stylesheet" href="styles/landing.css">
   <title>Weather App</title>
 </head>
 <body>
@@ -24,8 +25,29 @@
       </button>
     </div>
     <div class="right-section">
-      <span id="user-name" style="color: rgb(0, 0, 0); margin-right: 10px;"></span>
-      <button id="logout-btn" class="logout">Logout</button>
+
+      <button class="profile"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48ZyBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMS41Ij48cGF0aCBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNNCAxOGE0IDQgMCAwIDEgNC00aDhhNCA0IDAgMCAxIDQgNGEyIDIgMCAwIDEtMiAySDZhMiAyIDAgMCAxLTItMloiLz48Y2lyY2xlIGN4PSIxMiIgY3k9IjciIHI9IjMiLz48L2c+PC9zdmc+"></button>
+      <div class="profile-setion">
+        <div class="up-pf">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48ZyBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMS41Ij48cGF0aCBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNNCAxOGE0IDQgMCAwIDEgNC00aDhhNCA0IDAgMCAxIDQgNGEyIDIgMCAwIDEtMiAySDZhMiAyIDAgMCAxLTItMloiLz48Y2lyY2xlIGN4PSIxMiIgY3k9IjciIHI9IjMiLz48L2c+PC9zdmc+">
+          <div class="textContent">
+          <span id="user-name"></span>
+          <span id="user-email">adelmaach15@gmail.com</span>
+          </div>
+
+        </div>
+        <div class="modes">
+          <label>Dark mode <input type="radio"></label>
+          <label>Light mode <input type="radio" checked></label>
+        </div>
+
+        <select name="languge">
+          <option value="en" selected>English</option>
+          <option value="ar">Arabic</option>
+        </select>
+        <button id="logout-btn" class="logout">Logout</button>
+      </div>
+
     </div>
     <div class="error"></div>
   </header>

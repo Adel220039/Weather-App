@@ -51,3 +51,16 @@ document.addEventListener('DOMContentLoaded', function() {
     // Check session on page load
     checkSession();
 }); 
+
+
+
+const profileBtn = document.querySelector('.profile');
+const profileSetion = document.querySelector('.profile-setion');
+
+profileBtn.addEventListener('click', ()=>{
+    if(profileSetion.style.display === 'none'){
+        profileSetion.style.display = 'flex'
+    }else{
+        profileSetion.style.display = 'none'
+    }
+})
