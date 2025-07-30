@@ -27,13 +27,14 @@ const sessionStore = new MySQLStore({
   user:'root',
   host:'localhost',
   password:'',
-  database:'weatherapp'
+  database:'weatherapp',
+  createDatabaseTable: true
 })
 
 sessionStore.onReady().then(()=>{
   console.log('MySQLStore ready')
 }).catch(err=>{
-  console.log(`Error: ${err}.`)
+  console.log(`MySQLStore Error: ${err}`)
 })
 
 
@@ -47,10 +48,12 @@ app.use(session({
   store: sessionStore,
   cookie: {
     secure: false, // Set to true in production with HTTPS
-    httpOnly: true,
+    httpOnly: false,
     maxAge: 24 * 60 * 60 * 1000 // 24 hours
   }
 }))
+
+
 
 
 app.get('/', (req, res) => {
@@ -72,11 +75,9 @@ app.get('/auth', (req, res) => {
 app.get('/user-auth.html', (req, res) => { 
   // Check if user is authenticated
   if (!req.session.isAuth) {
-    console.log('Unauthorized access attempt to user-auth.html');
     return res.redirect('/auth');
   }
   
-  console.log('Authenticated user accessing user-auth.html');
   res.sendFile(path.join(__dirname, '../user-auth.html'));
 });
 
