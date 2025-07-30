@@ -2,12 +2,9 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const session = require('express-session');
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const MySQLStore = require('express-mysql-session')(session);
 const bcrypt = require('bcrypt');
-
-
-
 
 
 const db = mysql.createConnection({
@@ -17,34 +14,21 @@ const db = mysql.createConnection({
   database: 'weatherapp'
 });
 
-const sessionStore = new MySQLStore({}, db)
-
-app.use(express.json());
-
-app.use(session({
-  secret: '369369',
-  store: sessionStore, 
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    secure: false, 
-    httpOnly: true,
-    maxAge: 24 * 60 * 60 * 1000 
-  }
-}))
-
-app.use(express.static(path.join(__dirname, '..')));
-
-
-
-// Test database connection
 db.connect((err) => {
   if (err) {
     console.error('Error connecting to database:', err);
     return;
-  }
-  console.log('Connected to MySQL database');
+  }else{
+    console.log('Connected to MySQL database');
+ }
 });
+
+const sessionStore = new MySQLStore({
+  user:'root',
+  host:'localhost',
+  password:'',
+  database:'weatherapp'
+})
 
 sessionStore.onReady().then(()=>{
   console.log('MySQLStore ready')
@@ -52,20 +36,60 @@ sessionStore.onReady().then(()=>{
   console.log(`Error: ${err}.`)
 })
 
-app.get('/', (req, res) => {
-  
-  req.session.isAuth = true;
 
-  
+app.use(express.json());
+
+app.use(session({
+  name:'UserId',
+  secret: '369369',
+  resave: false,
+  saveUninitialized: false,
+  store: sessionStore,
+  cookie: {
+    secure: false, // Set to true in production with HTTPS
+    httpOnly: true,
+    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+  }
+}))
+
+
+app.get('/', (req, res) => {
+  if (req.session.isAuth) {
+    return res.redirect('/user-auth.html');
+  }
   res.sendFile(path.join(__dirname, '../index.html'));
 });
 
-app.get('/auth', (req, res) => {
+app.use(express.static(path.join(__dirname, '..')));
+
+app.get('/auth', (req, res) => { 
+  if (req.session.isAuth) {
+    return res.redirect('/user-auth.html');
+  }
   res.sendFile(path.join(__dirname, '../auth.html'));
 });
 
+app.get('/user-auth.html', (req, res) => { 
+  // Check if user is authenticated
+  if (!req.session.isAuth) {
+    console.log('Unauthorized access attempt to user-auth.html');
+    return res.redirect('/auth');
+  }
+  
+  console.log('Authenticated user accessing user-auth.html');
+  res.sendFile(path.join(__dirname, '../user-auth.html'));
+});
 
-
+// Session check endpoint
+app.get('/api/session', (req, res) => {
+  console.log('Session check - Session ID:', req.sessionID);
+  console.log('Session data:', req.session);
+  res.json({
+    sessionID: req.sessionID,
+    sessionData: req.session,
+    isAuthenticated: req.session.isAuth || false
+  });
+});
 
 // Registration endpoint
 app.post('/auth/register', async (req, res) => {
@@ -111,8 +135,6 @@ app.post('/auth/register', async (req, res) => {
   }
 });
 
-
-
 // Login endpoint
 app.post('/auth/login', async (req, res) => {
   try {
@@ -143,11 +165,19 @@ app.post('/auth/login', async (req, res) => {
         return res.status(400).json({ error: 'Password is incorrect' });
       }
 
+      // Set session data
+      req.session.userId = user.id;
+      req.session.userName = user.name;
+      req.session.userEmail = user.email;
+      req.session.isAuth = true;
+
+      // Manually save session
       req.session.save((err) => {
         if (err) {
           console.error('Session save error:', err);
-          return res.status(500).json({ error: 'Session error' });
+          return res.status(500).json({ error: 'Login failed - session error' });
         }
+        
         console.log('User logged in successfully');
         res.status(200).json({ message: 'Login successful', user: { id: user.id, name: user.name, email: user.email } });
       });
@@ -158,11 +188,15 @@ app.post('/auth/login', async (req, res) => {
   }
 });
 
-// Session check endpoint
-app.get('/auth/session', (req, res) => {
-  res.json({
-    isAuth: req.session.isAuth,
-    sessionId: req.sessionID
+// Logout endpoint
+app.get('/auth/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.error('Logout error:', err);
+      return res.status(500).json({ error: 'Logout failed' });
+    }
+    res.clearCookie('UserId');
+    res.json({ message: 'Logged out successfully' });
   });
 });
 

@@ -83,6 +83,17 @@ header{
   opacity: 0.9;
 }
 
+.logout {
+  background-color: #ff4444;
+  color: white;
+  border: 1.5px solid #cc0000;
+}
+
+.logout:hover {
+  background-color: #cc0000;
+  opacity: 0.9;
+}
+
 
 .error{
   display: none;

@@ -23,8 +23,8 @@ subSin.addEventListener('click' ,async (e)=>{
         })
 
         if(response.status === 201){
-            // Registration successful, redirect to home page
-            window.location.href = '/';
+            // Registration successful, redirect to user-auth.html
+            window.location.href = '/user-auth.html';
             return;
         } else if (response.status === 400) {
             const errorData = await response.json();
@@ -83,8 +83,8 @@ subLog.addEventListener('click' ,async (e)=>{
 
     const loginForm = document.querySelector('.login');
     if(response.status === 200){
-        // Login successful, redirect to home page
-        window.location.href = '/';
+        // Login successful, redirect to user-auth.html
+        window.location.href = '/user-auth.html';
         return;
     }else if (response.status === 400){
         const errorData = await response.json();
