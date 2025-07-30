@@ -82,8 +82,6 @@ app.get('/user-auth.html', (req, res) => {
 
 // Session check endpoint
 app.get('/api/session', (req, res) => {
-  console.log('Session check - Session ID:', req.sessionID);
-  console.log('Session data:', req.session);
   res.json({
     sessionID: req.sessionID,
     sessionData: req.session,

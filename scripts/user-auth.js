@@ -2,6 +2,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const logoutBtn = document.getElementById('logout-btn');
     const userNameSpan = document.getElementById('user-name');
+    const userEmail = document.getElementById('user-email');
 
     // Check session and display user info
     async function checkSession() {
@@ -14,7 +15,8 @@ document.addEventListener('DOMContentLoaded', function() {
             if (response.ok) {
                 const sessionData = await response.json();
                 if (sessionData.isAuthenticated && sessionData.sessionData.userName) {
-                    userNameSpan.textContent = `Welcome, ${sessionData.sessionData.userName}!`;
+                    userNameSpan.textContent = sessionData.sessionData.userName;
+                    userEmail.textContent = sessionData.sessionData.userEmail;
                 } else {
                     // Not authenticated, redirect to auth page
                     window.location.href = '/auth';
@@ -39,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (response.ok) {
                 console.log('Logged out successfully');
-                window.location.href = '/auth';
+                window.location.href = '/';
             } else {
                 console.error('Logout failed');
             }
