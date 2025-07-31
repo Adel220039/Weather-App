@@ -180,7 +180,7 @@ import {erToUpcase , wait} from './meh.js';
 
 
         let html = `
-          <img  class="pic-section" src="${pic}" alt="city-pic">
+          <img  class="pic-section light" src="${pic}" alt="city-pic">
 
           <div class="right-side">
 
@@ -240,8 +240,8 @@ import {erToUpcase , wait} from './meh.js';
               source ='https://cdn-icons-png.flaticon.com/512/414/414825.png';
             }
           html += `
-            <div class="forecast-item">
-              <img class="forecast-emoji" src="${source}" >
+            <div class="forecast-item light">
+              <img class="forecast-emoji light" src="${source}" >
               <div class="day">${day.date}</div>
               <div class="forecast-infos">
                 <div class="forecast-temp icony-sp sp"><span><img class="icony" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBmaWxsPSIjZTUwYTBhIiBkPSJNMjAgMTBoN3YyaC03em0wIDZoMTB2MkgyMHptMCA2aDd2MmgtN3ptLTEwLTEuODE2VjdIOHYxMy4xODRhMyAzIDAgMSAwIDIgMCIvPjxwYXRoIGZpbGw9IiNlNTBhMGEiIGQ9Ik0zMCA0SDEyLjk3NEE0Ljk4MyA0Ljk4MyAwIDAgMCA0IDd2MTEuMTFhNyA3IDAgMSAwIDEwIDBWN2E1IDUgMCAwIDAtLjEwMS0xSDMwWk05IDI4YTQuOTkzIDQuOTkzIDAgMCAxLTMuMzMyLTguNzE4TDYgMTguOTgzVjdhMyAzIDAgMCAxIDYgMHYxMS45ODNsLjMzMi4yOTlBNC45OTMgNC45OTMgMCAwIDEgOSAyOCIvPjwvc3ZnPg=="></span>${day.dayData.main.temp} °C</div>
@@ -288,7 +288,9 @@ searchInput.addEventListener('input', function() {
   matches.forEach(city => {
     const div = document.createElement('div');
     div.textContent = city;
-    div.className = 'suggestion-item';
+    // Get current theme from body class or default to light
+    const currentTheme = document.body.className || 'light';
+    div.className = `suggestion-item ${currentTheme}`;
     suggestionsDiv.appendChild(div);
   });
 });

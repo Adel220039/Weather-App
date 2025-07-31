@@ -7,12 +7,9 @@
 .forecast-emoji{
   max-width:202px ;
   height: 126px;
-  border-bottom:2px solid var(--lightblue);
   padding-bottom: 10px;
 }
 .forecast-item{
-  background-color: var(--lightenblue);
-  border:1px solid var(--lightblue);
   border-radius: 50px;
   display: flex;
   flex-direction: column;
@@ -20,7 +17,6 @@
   padding: 15px;
   justify-content: center;
   align-items: center;
-    box-shadow: 1px 1px 10px var(--lightenblue);
 }
 
 .forecast-infos{

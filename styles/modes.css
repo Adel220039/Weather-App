@@ -1,0 +1,239 @@
+body.dark {
+  background-color: var(--darkenblue);
+  color: #ffffff;
+}
+
+body.light {
+  background-color: var(--lightblue);
+  color: black;
+}
+
+header.light{
+  background-color:var(--lightblue);
+  border-bottom: 1px solid var(--lightenblue);
+  box-shadow: 2px 0 10px var(--lightenblue);
+}
+
+header.dark{
+  background-color: var(--darkenblue);
+  border-bottom: 1px solid var(--darkblue);
+  box-shadow: 2px 0 5px var(--lightenblue) ;
+}
+
+
+a.light {
+  color: var(--darkenblue);
+}
+
+a.dark {
+  color: var(--lightblue);
+}
+
+
+.midd-section input.light {
+  background-color: #87bdef;
+  border: 1px solid var(--lightenblue)
+}
+
+.midd-section input.dark {
+  background-color: #293846;
+  border: 1px solid #293846;
+  color: white;
+}
+
+
+
+.midd-section button.light{
+  background-color: #87bdef;
+}
+.midd-section button.light:hover{
+  background-color: var(--lightenblue);
+}
+
+
+.midd-section button.dark{
+  background-color: #293846;
+}
+.midd-section button.dark:hover{
+  background-color: var(--darkblue);
+}
+
+
+.right-section.light{
+  background-color: var(--lightenblue);
+  border:1px solid var(--lightenblue);
+  box-shadow: 1px 1px 3px var(--lightenblue);
+}
+
+.right-section.light:hover{
+  background-color: #87bdef;
+}
+
+
+.right-section.dark{
+  background-color: #293846;
+  border:1px solid var(--darkblue);
+  box-shadow: 1px 1px 3px #293846;
+}
+
+.right-section.dark:hover{
+  background-color: var(--darkblue);
+}
+
+
+
+.right-section  button.light{
+  background-color: var(--lightenblue);
+  border:1px solid var(--lightenblue);
+  box-shadow: 1px 1px 3px var(--lightenblue);
+}
+
+.right-section button.light:hover{
+  background-color: #87bdef;
+}
+
+
+.right-section button.dark{
+  background-color: #293846;
+  border:1px solid var(--darkblue);
+  box-shadow: 1px 1px 3px #293846;
+}
+
+.right-section button.dark:hover{
+  background-color: var(--darkblue);
+} 
+
+
+
+
+header .error.light{
+  background-color: var(--lightenblue);
+  border:1px solid var(--lightenblue);
+  box-shadow: 1px 1px 8px var(--lightenblue);
+}
+
+header .error.dark{
+  background-color: var(--darkblue);
+  border:1px solid var(--darkblue);
+  box-shadow: 1px 1px 8px var(--darkblue);
+}
+
+
+
+.suggestions-dropdown.light{
+    background-color: var(--lightenblue);
+    box-shadow: 0 2px 8px var(--lightenblue);
+}
+
+.suggestions-dropdown.dark{
+    background-color: var(--darkenblue);
+    box-shadow: 0 2px 8px var(--darkblue);
+}
+
+
+
+.suggestions-dropdown .suggestion-item.light:hover{
+  background-color: #87bdef;
+}
+
+.suggestions-dropdown .suggestion-item.dark:hover{
+  background-color: var(--darkblue);
+}
+
+
+
+main.light{
+  background-color: var(--lightenblue);
+  border:1px solid var(--lightblue);
+  box-shadow: 1px 1px 14px var(--lightenblue);
+}
+
+main.dark{
+  background-color: var(--darkblue);
+  border:1px solid var(--darkenblue);
+  box-shadow: 1px 1px 14px var(--darkblue);
+}
+
+
+.pic-section.light{
+    box-shadow: 1px 1px 14px var(--lightenblue);
+}
+
+.pic-section.dark{
+    box-shadow: 1px 1px 14px var(--darkblue);
+}
+
+
+
+.forecast-item.light{
+  background-color: var(--lightenblue);
+  border:1px solid var(--lightblue);
+  box-shadow: 1px 1px 10px var(--lightenblue);
+}
+
+.forecast-item.dark{
+  background-color: var(--darkblue);
+  border:1px solid var(--darkenblue);
+  box-shadow: 1px 1px 10px var(--darkblue);
+}
+
+
+.forecast-emoji.light{
+  border-bottom:2px solid var(--lightblue);
+}
+
+.forecast-emoji.dark{
+  border-bottom:2px solid var(--darkenblue);
+}
+
+
+
+.profile-setion.light{
+  background-color: var(--lightblue);
+    box-shadow: 0.3px 0.3px 3px var(--lightenblue);
+}
+
+.profile-setion.dark{
+  background-color: var(--darkblue);
+    box-shadow: 0.3px 0.3px 3px var(--darkenblue);
+}
+
+
+
+.up-pf.light{
+    border-bottom:1px solid var(--lightenblue);
+}
+.up-pf.dark{
+    border-bottom:1px solid var(--darkenblue);
+}
+
+.img.light{
+   border:1px solid var(--lightenblue);
+}
+.img.dark{
+   border:1px solid var(--darkenblue);
+}
+
+#user-email.light{
+  color: var(--darkblue);
+}
+
+#user-email.dark{
+  color:#293846;
+}
+
+select.light{
+ color: black;
+}
+
+select.dark{
+  color: white;
+}
+
+option.light{
+ color: black;
+}
+
+option.dark{
+  color: white;
+}

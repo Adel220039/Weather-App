@@ -10,16 +10,17 @@
   <link rel="stylesheet" href="styles/header.css">
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/5-days.css">
+  <link rel="stylesheet" href="styles/modes.css">
   <title>Weather App</title>
 </head>
-<body>
+<body class="light">
 
-  <header>
-    <a href="/"><div class="left-section">Weather App</div></a>
+  <header class="light">
+    <a class="light" href="/"><div class="left-section light">Weather App</div></a>
     <div class="midd-section">
-      <input  type="search" placeholder="Search for a city ..." class="search-input error-shit" id="search-input">
-      <div id="suggestions" class="suggestions-dropdown"></div>
-      <button class="search-btn">
+      <input  type="search" placeholder="Search for a city ..." class="search-input error-shit light" id="search-input">
+      <div id="suggestions" class="suggestions-dropdown light"></div>
+      <button class="search-btn light">
         <img class="search-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSIjMDAwIiBkPSJtMTkuNiAyMWwtNi4zLTYuM3EtLjc1LjYtMS43MjUuOTVUOS41IDE2cS0yLjcyNSAwLTQuNjEyLTEuODg4VDMgOS41dDEuODg4LTQuNjEyVDkuNSAzdDQuNjEzIDEuODg4VDE2IDkuNXEwIDEuMS0uMzUgMi4wNzVUMTQuNyAxMy4zbDYuMyA2LjN6TTkuNSAxNHExLjg3NSAwIDMuMTg4LTEuMzEyVDE0IDkuNXQtMS4zMTItMy4xODdUOS41IDVUNi4zMTMgNi4zMTNUNSA5LjV0MS4zMTMgMy4xODhUOS41IDE0Ii8+PC9zdmc+" alt="Search">
       </button>
     </div>
@@ -27,10 +28,10 @@
       <a href="auth.html"><button class="login">Login</button></a>
       <a href="auth.html?form=signup"><button class="register">Sign Up</button></a>
     </div>
-    <div class="error"></div>
+    <div class="error light"></div>
   </header>
 
-  <main>
+  <main class="light">
     
   </main>
 
@@ -45,6 +46,6 @@
   
   <script type="module" src="scripts/script.js"></script>
   <script type="module" src="scripts/meh.js"></script>
-  <script  src="scripts/auth.js"></script>
+  <script src="scripts/auth.js"></script>
 </body>
 </html>

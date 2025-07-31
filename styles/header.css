@@ -1,17 +1,13 @@
 header{
-  background-color:var(--lightblue)/*url('https://images.unsplash.com/photo-1657598339759-fd1432d833f0?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2xvdWRzJTIwaW4lMjBza3l8ZW58MHx8MHx8fDA%3D')*/;
   display:flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid var(--lightenblue);
   position: fixed;
   top:0;
   right: 0;
   left:0;
-  box-shadow: 2px 0 10px var(--lightenblue);
 }
 .left-section {
-  color: var(--darkblue);
   font-family: roboto;
   padding: 10px;
   font-size: 30px;
@@ -27,13 +23,11 @@ header{
 
 .midd-section input{
   outline: none;
-  background-color: #87bdef;
   width:45%;
   height:40px;
   font-size: 16px;
   border-radius: 20px;
   padding: 5px 8px;
-  border: 1px solid var(--lightenblue)
 }
  
 .midd-section button{
@@ -49,13 +43,10 @@ header{
   border-top:none;
   border-bottom:none;
   margin-top:1.5px;
-  background-color: #87bdef;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
-.midd-section button:hover{
-  background-color: var(--lightenblue);
-}
+
 
 
 .right-section{
@@ -70,21 +61,39 @@ header{
 }
 .right-section button{
   text-align: center;
-  background-color: var(--lightenblue);
   color: black;
   padding: 0;
   border-radius:10px ;
   width: 80px;
   height: 40px;
-  border:1px solid var(--lightenblue);
   cursor:pointer;
-  box-shadow: 1px 1px 3px var(--lightenblue);
   transition: background all 0.3ms ease-in-out;
 }
-
+.right-section a button{
+  background-color: var(--lightenblue);
+  border:1px solid var(--lightblue);
+  box-shadow: 1px 1px 10px var(--lightenblue);
+}
 .right-section button:hover{
-  background-color: #87bdef;
   opacity: 0.9;
+}
+
+.theme-toggle {
+  display: flex;
+  gap: 10px;
+  margin-right: 10px;
+}
+
+.theme-toggle label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.theme-toggle input[type="radio"] {
+  margin: 0;
 }
 
 
@@ -94,9 +103,6 @@ header{
   position: absolute;
   top:58px;
   right:37%;
-  background-color: var(--lightenblue);
-  border:1px solid var(--lightenblue);
-  box-shadow: 1px 1px 8px var(--lightenblue);
   padding: 6px 8px;
   border-radius: 10px;
 }
@@ -106,11 +112,8 @@ header{
 
 
 .suggestions-dropdown {
-
   position: absolute;
   top: 50px;;
-  background-color: var(--lightenblue);
-
   width: 250px;
   max-height: 200px;
   overflow-y: auto;
@@ -118,7 +121,6 @@ header{
   left: 50%;
   transform: translateX(-50%);
   margin-top: 2px;
-  box-shadow: 0 2px 8px var(--lightenblue);
   border-left: 1px solid #ccc;
   border-right: 1px solid #ccc;
 }
@@ -127,9 +129,7 @@ header{
   cursor: pointer;
   transition: background 0.2s;
 }
-.suggestion-item:hover {
-  background-color: #87bdef;
-}
+
 
 
 
