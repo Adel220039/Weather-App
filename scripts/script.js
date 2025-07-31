@@ -143,44 +143,49 @@ import {erToUpcase , wait} from './meh.js';
         ,{dayData:day5 , date:dayjs().add(5,'days').format('dddd DD/MM')}) 
       }
 
-      await getInfo(getWeatherData);
-      
-      function displayMain(){
+             await getInfo(getWeatherData);
+       
+       // Get current theme from body class or default to light
+       const currentTheme = document.body.className || 'light';
+       
+       function displayMain(){
 
-       let source = '';
-       if (dayInfo.id >= 200 && dayInfo.id <= 232) {
-        source = 'https://cdn-icons-png.flaticon.com/512/1779/1779963.png';
-        } else if (dayInfo.id >= 300 && dayInfo.id <= 321) {
-          source = 'https://cdn-icons-png.flaticon.com/512/2675/2675897.png';
-        } else if (dayInfo.id >= 500 && dayInfo.id <= 531) {
-          source = 'https://cdn-icons-png.flaticon.com/512/1164/1164945.png';
-        } else if (dayInfo.id >= 600 && dayInfo.id <= 622) {
-          source = 'https://cdn1.iconfinder.com/data/icons/winter-123/512/snowflake-snow-winter-cold-nature-512.png';
-        } else if (dayInfo.id >= 701 && dayInfo.id <= 781) {
-          source ='https://cdn-icons-png.flaticon.com/512/18005/18005339.png';
-        } else if (dayInfo.id === 800) {
-          source ='https://cdn-icons-png.flaticon.com/512/2698/2698240.png ';
-        } else if (dayInfo.id === 801) {
-          source ='https://www.wunderground.com/static/i/c/v4/30.svg';
-        } else if (dayInfo.id >= 802 && dayInfo.id <= 804) {
-          source ='https://cdn-icons-png.flaticon.com/512/414/414825.png';
-        }
+        let source = '';
+        if (dayInfo.id >= 200 && dayInfo.id <= 232) {
+         source = 'https://cdn-icons-png.flaticon.com/512/1779/1779963.png';
+         } else if (dayInfo.id >= 300 && dayInfo.id <= 321) {
+           source = 'https://cdn-icons-png.flaticon.com/512/2675/2675897.png';
+         } else if (dayInfo.id >= 500 && dayInfo.id <= 531) {
+           source = 'https://cdn-icons-png.flaticon.com/512/1164/1164945.png';
+         } else if (dayInfo.id >= 600 && dayInfo.id <= 622) {
+           source = 'https://cdn1.iconfinder.com/data/icons/winter-123/512/snowflake-snow-winter-cold-nature-512.png';
+         } else if (dayInfo.id >= 701 && dayInfo.id <= 781) {
+           source ='https://cdn-icons-png.flaticon.com/512/18005/18005339.png';
+         } else if (dayInfo.id === 800) {
+           source ='https://cdn-icons-png.flaticon.com/512/2698/2698240.png ';
+         } else if (dayInfo.id === 801) {
+           source ='https://www.wunderground.com/static/i/c/v4/30.svg';
+         } else if (dayInfo.id >= 802 && dayInfo.id <= 804) {
+           source ='https://cdn-icons-png.flaticon.com/512/414/414825.png';
+         }
 
-        let pic ='';
-        if(city==="dakhla" || city==="Dakhla"){
-            pic = "https://www.shutterstock.com/image-photo/dakhla-morocco-view-sky-600nw-2240458533.jpg"
-        } else if(city==="agadir" || city==="Agadir"){
-            pic = "https://www.expatriation.ma/wp-content/uploads/2023/02/maroc-agadir.jpg";
-        }
-        else if(city ==='guelmim'||city==="Guelmim"){
-           pic = 'https://www.augon.ma/sites/default/files/2023-04/Guelmim-margaret-cornfield%20%281%29.jpeg'
-        }
-        else { pic = cityPic}
+         let pic ='';
+         if(city==="dakhla" || city==="Dakhla"){
+             pic = "https://www.shutterstock.com/image-photo/dakhla-morocco-view-sky-600nw-2240458533.jpg"
+         } else if(city==="agadir" || city==="Agadir"){
+             pic = "https://www.expatriation.ma/wp-content/uploads/2023/02/maroc-agadir.jpg";
+         }
+         else if(city ==='guelmim'||city==="Guelmim"){
+            pic = 'https://www.augon.ma/sites/default/files/2023-04/Guelmim-margaret-cornfield%20%281%29.jpeg'
+         }
+         else { pic = cityPic}
 
 
 
+         
+        
         let html = `
-          <img  class="pic-section light" src="${pic}" alt="city-pic">
+          <img  class="pic-section ${currentTheme}" src="${pic}" alt="city-pic">
 
           <div class="right-side">
 
@@ -240,8 +245,8 @@ import {erToUpcase , wait} from './meh.js';
               source ='https://cdn-icons-png.flaticon.com/512/414/414825.png';
             }
           html += `
-            <div class="forecast-item light">
-              <img class="forecast-emoji light" src="${source}" >
+            <div class="forecast-item ${currentTheme}">
+              <img class="forecast-emoji ${currentTheme}" src="${source}" >
               <div class="day">${day.date}</div>
               <div class="forecast-infos">
                 <div class="forecast-temp icony-sp sp"><span><img class="icony" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBmaWxsPSIjZTUwYTBhIiBkPSJNMjAgMTBoN3YyaC03em0wIDZoMTB2MkgyMHptMCA2aDd2MmgtN3ptLTEwLTEuODE2VjdIOHYxMy4xODRhMyAzIDAgMSAwIDIgMCIvPjxwYXRoIGZpbGw9IiNlNTBhMGEiIGQ9Ik0zMCA0SDEyLjk3NEE0Ljk4MyA0Ljk4MyAwIDAgMCA0IDd2MTEuMTFhNyA3IDAgMSAwIDEwIDBWN2E1IDUgMCAwIDAtLjEwMS0xSDMwWk05IDI4YTQuOTkzIDQuOTkzIDAgMCAxLTMuMzMyLTguNzE4TDYgMTguOTgzVjdhMyAzIDAgMCAxIDYgMHYxMS45ODNsLjMzMi4yOTlBNC45OTMgNC45OTMgMCAwIDEgOSAyOCIvPjwvc3ZnPg=="></span>${day.dayData.main.temp} °C</div>
