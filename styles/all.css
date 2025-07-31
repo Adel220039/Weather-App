@@ -3,7 +3,20 @@
   margin: 0;
   font-family:roboto ,intel one mono;
 }
+body{
+  background-color: var(--lightblue);
+}
 a{
   text-decoration: none;
   color:black;
+}
+
+  :root{
+  --white: #ffffff;
+  --black: #000000;
+  --gray: rgb(148, 146, 146);
+  --darkblue :#1E213A;
+  --darkenbue :#100E1D;
+  --lightblue:#5091F1;
+  --lightenblue:#6DB4F5;
 }

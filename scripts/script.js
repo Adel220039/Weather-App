@@ -159,7 +159,7 @@ import {erToUpcase , wait} from './meh.js';
         } else if (dayInfo.id >= 701 && dayInfo.id <= 781) {
           source ='https://cdn-icons-png.flaticon.com/512/18005/18005339.png';
         } else if (dayInfo.id === 800) {
-          source ='https://i.pinimg.com/564x/87/59/32/87593254dd28be044d90be2492a8734d.jpg';
+          source ='https://cdn-icons-png.flaticon.com/512/2698/2698240.png ';
         } else if (dayInfo.id === 801) {
           source ='https://www.wunderground.com/static/i/c/v4/30.svg';
         } else if (dayInfo.id >= 802 && dayInfo.id <= 804) {
@@ -233,7 +233,7 @@ import {erToUpcase , wait} from './meh.js';
             } else if (id >= 701 && id <= 781) {
               source ='https://cdn-icons-png.flaticon.com/512/18005/18005339.png';
             } else if (id === 800) {
-              source ='https://i.pinimg.com/564x/87/59/32/87593254dd28be044d90be2492a8734d.jpg';
+              source ='https://cdn-icons-png.flaticon.com/512/2698/2698240.png ';
             } else if (id === 801) {
               source ='https://www.wunderground.com/static/i/c/v4/30.svg';
             } else if (id >= 802 && id <= 804) {

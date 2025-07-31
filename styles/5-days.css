@@ -7,11 +7,12 @@
 .forecast-emoji{
   max-width:202px ;
   height: 126px;
-  border-bottom:2px solid rgb(216, 216, 216);
+  border-bottom:2px solid var(--lightblue);
   padding-bottom: 10px;
 }
 .forecast-item{
-  border:1px solid gray;
+  background-color: var(--lightenblue);
+  border:1px solid var(--lightblue);
   border-radius: 50px;
   display: flex;
   flex-direction: column;
@@ -19,7 +20,7 @@
   padding: 15px;
   justify-content: center;
   align-items: center;
-    box-shadow: 1px 1px 14px rgba(0,0,0,0.5);
+    box-shadow: 1px 1px 10px var(--lightenblue);
 }
 
 .forecast-infos{
@@ -55,5 +56,5 @@
   margin-top:80px;
   font-size: 20px;
   font-family: intel one mono;
-  text-shadow:1px 1px 14px rgba(0,0,0,0.5);;
+  text-shadow:1px 1px 14px var(--lightenblue);
 }

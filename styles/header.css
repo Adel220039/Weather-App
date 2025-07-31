@@ -1,16 +1,17 @@
 header{
-  background-color:white/*url('https://images.unsplash.com/photo-1657598339759-fd1432d833f0?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2xvdWRzJTIwaW4lMjBza3l8ZW58MHx8MHx8fDA%3D')*/;
+  background-color:var(--lightblue)/*url('https://images.unsplash.com/photo-1657598339759-fd1432d833f0?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2xvdWRzJTIwaW4lMjBza3l8ZW58MHx8MHx8fDA%3D')*/;
   display:flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid var(--lightenblue);
   position: fixed;
   top:0;
   right: 0;
   left:0;
-  box-shadow: 2px 0 15px rgba(0,0,0,0.5);
+  box-shadow: 2px 0 10px var(--lightenblue);
 }
 .left-section {
+  color: var(--darkblue);
   font-family: roboto;
   padding: 10px;
   font-size: 30px;
@@ -25,12 +26,14 @@ header{
 }
 
 .midd-section input{
+  outline: none;
+  background-color: #87bdef;
   width:45%;
   height:40px;
   font-size: 16px;
   border-radius: 20px;
   padding: 5px 8px;
-  border: 1px solid 
+  border: 1px solid var(--lightenblue)
 }
  
 .midd-section button{
@@ -46,12 +49,12 @@ header{
   border-top:none;
   border-bottom:none;
   margin-top:1.5px;
-  background-color: rgb(222, 222, 222);
+  background-color: #87bdef;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
 .midd-section button:hover{
-  background-color: rgb(150, 150, 150);
+  background-color: var(--lightenblue);
 }
 
 
@@ -67,19 +70,20 @@ header{
 }
 .right-section button{
   text-align: center;
+  background-color: var(--lightenblue);
   color: black;
   padding: 0;
   border-radius:10px ;
   width: 80px;
   height: 40px;
-  border:1.5px solid gray;
+  border:1px solid var(--lightenblue);
   cursor:pointer;
-  box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+  box-shadow: 1px 1px 3px var(--lightenblue);
   transition: background all 0.3ms ease-in-out;
 }
 
 .right-section button:hover{
-  background-color: #ccc;
+  background-color: #87bdef;
   opacity: 0.9;
 }
 
@@ -90,9 +94,9 @@ header{
   position: absolute;
   top:58px;
   right:37%;
-  background-color: white;
-  border:1px solid gray;
-  box-shadow: 1px 1px 8px rgba(0,0,0,0.5);
+  background-color: var(--lightenblue);
+  border:1px solid var(--lightenblue);
+  box-shadow: 1px 1px 8px var(--lightenblue);
   padding: 6px 8px;
   border-radius: 10px;
 }
@@ -105,7 +109,7 @@ header{
 
   position: absolute;
   top: 50px;;
-  background: #fff;
+  background-color: var(--lightenblue);
 
   width: 250px;
   max-height: 200px;
@@ -114,7 +118,7 @@ header{
   left: 50%;
   transform: translateX(-50%);
   margin-top: 2px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 8px var(--lightenblue);
   border-left: 1px solid #ccc;
   border-right: 1px solid #ccc;
 }
@@ -124,14 +128,13 @@ header{
   transition: background 0.2s;
 }
 .suggestion-item:hover {
-  background: #f0f0f0;
+  background-color: #87bdef;
 }
 
 
 
 .loadin{
   border:3px dashed black;
-
   width: 20px;
   height: 20px;
   border-radius:50% ; 

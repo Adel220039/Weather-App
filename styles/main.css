@@ -1,11 +1,12 @@
 main{
   display: flex;
   margin:40px;
+  background-color: var(--lightenblue);
   margin-top:100px;
-  border:1px solid gray;
+  border:1px solid var(--lightblue);
   column-gap: 60px;
   border-radius: 60px;
-  box-shadow: 1px 1px 14px rgba(0,0,0,0.5);
+  box-shadow: 1px 1px 14px var(--lightenblue);
 }
 
 .pic-section{
@@ -13,10 +14,11 @@ main{
   width: 600px;
   object-fit: cover;
   border-radius: 60px;
-  box-shadow: 1px 1px 14px rgba(0,0,0,0.5);
+  box-shadow: 1px 1px 14px var(--lightenblue);
 }
 
 .emoji-section{
+  background-color: transparent;
   max-width:350px;
   height:280px;
   margin-right: 10px;
