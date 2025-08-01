@@ -94,3 +94,20 @@
   display: none;
  }
 
+ 
+@media (max-width:768px){
+  .suggestions-dropdown{
+    width:290px;
+    left: 27%;
+    transform: translateX(27%);
+  }
+}
+
+@media (max-width:425.60px){
+  .suggestions-dropdown{
+    width:130px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+

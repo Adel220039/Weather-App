@@ -1,0 +1,254 @@
+@media  (max-width:768px){
+  .forecast-section{
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 10px;
+  }
+  main{
+    column-gap: 30px;
+    border-radius: 30px;
+    margin-top:70px;
+  }
+  .main-info{
+    font-size: 20px;
+    row-gap: 7.5px;
+    margin-bottom: 30px;
+  }
+  .pic-section{
+    height: 300px;
+    width: 300px;
+     border-radius: 30px;
+  }
+
+  .city-name{
+  font-size: 30px;
+  }
+
+  .emoji-section{
+    max-width:175px;
+    height:140px;
+  }
+
+  .down-section{
+    font-size: 17.5px;
+  }
+
+  .forecast-emoji{
+    max-width:150px ;
+    height: 80px;
+    padding-bottom: 5px;
+  }
+  
+  .forecast-item{
+    border-radius: 30px;
+    row-gap: 10px;
+    padding: 10px;
+  }
+
+  .forecast-infos{
+    font-size: 12px;
+  }
+  
+  .day{
+    font-size: 14px;
+  }
+
+  .icony{
+    width: 15px; 
+  }
+
+  .sp{
+    margin-right:10px ;
+  }
+
+  .footer-content{
+    margin:20px;
+    margin-top:30px;
+    font-size: 15px;
+  }
+  .midd-section input{
+    width:55%;
+    height:30px;
+    font-size: 16px;
+    border-radius: 15px;
+  }
+
+  .left-section {
+    font-size: 20px;
+  }
+
+  .midd-section button{
+    width:37px;
+    height: 27.75px;
+    border-radius: 13.875px;
+    margin-left:-39px;
+    margin-top:1.5px;
+  }
+
+  .right-section button{
+    border-radius:15px ;
+    width: 60px;
+    height: 30px;
+  }
+
+  .right-section .profile{
+    width: 35px;
+    height: 35px;
+  }
+
+  .profile img{
+    width: 25px;
+  }
+
+  .suggestions-dropdown {
+    max-height: 150px;
+  }
+  
+  .error{
+    border-radius: 5px;
+    font-size: 12px;
+  }
+
+
+}
+
+
+/*Telephone size*/
+
+@media  (max-width:425.60px){
+  .forecast-section{
+    grid-template-columns: 1fr 1fr;
+    row-gap: 7px;
+  }
+  main{
+    column-gap: 15px;
+    border-radius: 15px;
+    margin-top:60px;
+  }
+  .infos{
+     row-gap: 10px;
+     margin-bottom: 0;
+  }
+  .main-info{
+    font-size: 10px;
+    row-gap: 5px;
+    margin-bottom: 5px;
+  }
+  .pic-section{
+    height: 250px;
+    width: 200px;
+    border-radius: 15px;
+  }
+  header{
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+  .city-name{
+  font-size: 16px;
+  }
+  .icon {
+    width: 15px;
+  }
+   
+  .icon-sp{
+    gap: 5px;
+  }
+
+  .emoji-section{
+    max-width:50px;
+    height:50px;
+  }
+
+  .down-section{
+    margin-top: 20px;
+    font-size: 10px;
+  }
+
+  .forecast-emoji{
+    max-width:100px ;
+    height: 80px;
+    padding-bottom: 5px;
+  }
+  
+  .forecast-item{
+    border-radius: 15px;
+    row-gap: 10px;
+    padding: 10px;
+  }
+
+
+  .forecast-infos{
+    font-size: 10px;
+  }
+  
+  .day{
+    font-size: 12px;
+  }
+
+  .icony{
+    width: 10px; 
+  }
+
+  .sp{
+    margin-right:10px ;
+  }
+
+  .footer-content{
+    margin:20px;
+    margin-top:30px;
+    font-size: 12px;
+  }
+  .midd-section input{
+    width:75%;
+    height:25px;
+    font-size: 12px;
+    border-radius: 15px;
+  }
+
+  .left-section {
+    display: none;;
+  }
+
+  .midd-section button{
+    width:26px;
+    height: 23px;
+    border-radius: 15px;
+    margin-left:-28px;
+    margin-top:1.5px;
+  }
+
+  .midd-section button img{
+    width: 18px;
+  }
+
+  .right-section button{
+    border-radius:15px ;
+    width: 45px;
+    height: 25px;
+    font-size: 12px;
+  }
+
+  .right-section .profile{
+    width: 25px;
+    height: 25px;
+  }
+
+  .profile img{
+    width:18px;
+  }
+
+  .suggestions-dropdown {
+    max-height: 90px;
+    top: 40px;
+    width: 130px;
+    left: 35%;
+    font-size: 10px;
+  }
+  
+  .error{
+    border-radius: 3px;
+    font-size: 9px;
+    top:40px;
+    right:50%;
+    padding: 3px 4px;
+  }
+}
