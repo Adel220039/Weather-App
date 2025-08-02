@@ -48,10 +48,112 @@ import {erToUpcase , wait} from './meh.js';
       loading()
     }
     } )
+    let main = document.querySelector('main')
 
+    // Improved loading state with animated spinner
+    function showLoadingSpinner() {
+      main.innerHTML = `
+        <div class="loading-container">
+          <div class="loading-spinner"></div>
+          <div class="loading-text">Loading weather data...</div>
+        </div>
+      `;
+    }
 
+    function display(){  
+      showLoadingSpinner();
+      loading()
+    }
+    display()
 
-    loading()
+    // Add CSS for loading animations
+    function addLoadingStyles() {
+      if (!document.getElementById('loading-styles')) {
+        const style = document.createElement('style');
+        style.id = 'loading-styles';
+        style.textContent = `
+          .loading-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            width: 100%;
+            gap: 20px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+          }
+          
+          .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+          }
+          
+          @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+          
+          .loading-text {
+            font-size: 18px;
+            color: #666;
+            animation: pulse 2s ease-in-out infinite;
+          }
+          
+          @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+          }
+          
+          .fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+          }
+          
+          @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+          
+          .slide-in-left {
+            animation: slideInLeft 0.8s ease-out;
+          }
+          
+          @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+          }
+          
+          .slide-in-right {
+            animation: slideInRight 0.8s ease-out;
+          }
+          
+          @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+          }
+          
+          .scale-in {
+            animation: scaleIn 0.6s ease-out;
+          }
+          
+          @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+          }
+        `;
+        document.head.appendChild(style);
+      }
+    }
+
+    // Initialize loading styles
+    addLoadingStyles();
 
     async function loading(){
 
@@ -86,7 +188,7 @@ import {erToUpcase , wait} from './meh.js';
       
       async function getInfo(getWeatherData){
         const data = await getWeatherData(city);
-
+        
         if (!data || !data.main || !data.weather || !data.coord) {
           handleApiError();
           return;
@@ -103,6 +205,7 @@ import {erToUpcase , wait} from './meh.js';
         
         const {lat} = data.coord;
         const {lon} = data.coord;
+        
 
 
         const dataItem = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`).then(response=>{
@@ -180,35 +283,30 @@ import {erToUpcase , wait} from './meh.js';
          }
          else { pic = cityPic}
 
-
-
-         
-        
         let html = `
-          <img  class="pic-section ${currentTheme}" src="${pic}" alt="city-pic">
+          <img class="pic-section ${currentTheme} slide-in-left" src="${pic}" alt="city-pic">
 
-          <div class="right-side">
+          <div class="right-side slide-in-right">
 
             <div class="up-section">
               <div class="infos">
-                <div class="city-name">${erToUpcase(city)}</div>
+                <div class="city-name scale-in">${erToUpcase(city)}</div>
 
                 <div class="main-info">
-                  <div class="temperature icon-sp"><span><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBmaWxsPSIjZTUwYTBhIiBkPSJNMjAgMTBoN3YyaC03em0wIDZoMTB2MkgyMHptMCA2aDd2MmgtN3ptLTEwLTEuODE2VjdIOHYxMy4xODRhMyAzIDAgMSAwIDIgMCIvPjxwYXRoIGZpbGw9IiNlNTBhMGEiIGQ9Ik0zMCA0SDEyLjk3NEE0Ljk4MyA0Ljk4MyAwIDAgMCA0IDd2MTEuMTFhNyA3IDAgMSAwIDEwIDBWN2E1IDUgMCAwIDAtLjEwMS0xSDMwWk05IDI4YTQuOTkzIDQuOTkzIDAgMCAxLTMuMzMyLTguNzE4TDYgMTguOTgzVjdhMyAzIDAgMCAxIDYgMHYxMS45ODNsLjMzMi4yOTlBNC45OTMgNC45OTMgMCAwIDEgOSAyOCIvPjwvc3ZnPg=="></span>${dayInfo.temp}°C</div>
-                  <div class="humidity icon-sp"><span><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48ZyBmaWxsPSJub25lIiBzdHJva2U9IiMyMjhlZTAiIHN0cm9rZS13aWR0aD0iMiI+PHBhdGggZD0iTTEyIDIxLjVjNC4xMDEgMCA3LjUtMy4wNjMgNy41LTYuOTI5YzAtMi40MTUtMS4yMzMtNC44NTktMi42MjctNi44NjJjLTEuNDAzLTIuMDE3LTMuMDIyLTMuNjYtMy44OTUtNC40OTFhMS40MTMgMS40MTMgMCAwIDAtMS45NTYgMGMtLjg3My44My0yLjQ5MiAyLjQ3NC0zLjg5NSA0LjQ5MUM1LjczMyA5LjcxMiA0LjUgMTIuMTU2IDQuNSAxNC41NzFjMCAzLjg2NiAzLjM5OSA2LjkyOSA3LjUgNi45MjlaIi8+PHBhdGggc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBkPSJNMTIgMThhNCA0IDAgMCAxLTQtNCIvPjwvZz48L3N2Zz4="></span> ${dayInfo.humidity} %</div>
-                  <div class="wind-speed icon-sp"><span><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSIjMDAwIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik02LjI1IDUuNUEzLjI1IDMuMjUgMCAxIDEgOS41IDguNzVIM2EuNzUuNzUgMCAwIDEgMC0xLjVoNi41QTEuNzUgMS43NSAwIDEgMCA3Ljc1IDUuNXYuMzU3YS43NS43NSAwIDEgMS0xLjUgMHptOCAyYTQuMjUgNC4yNSAwIDEgMSA0LjI1IDQuMjVIMmEuNzUuNzUgMCAwIDEgMC0xLjVoMTYuNWEyLjc1IDIuNzUgMCAxIDAtMi43NS0yLjc1VjhhLjc1Ljc1IDAgMCAxLTEuNSAwem0tMTEgNi41YS43NS43NSAwIDAgMSAuNzUtLjc1aDE0LjVhNC4yNSA0LjI1IDAgMSAxLTQuMjUgNC4yNVYxN2EuNzUuNzUgMCAwIDEgMS41IDB2LjVhMi43NSAyLjc1IDAgMSAwIDIuNzUtMi43NUg0YS43NS43NSAwIDAgMS0uNzUtLjc1IiBjbGlwLXJ1bGU9ImV2ZW5vZGQiLz48L3N2Zz4="></span> ${dayInfo.wind.speed} km/h</div>
-                  <div class="wave icon-sp"><span><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3MiIgaGVpZ2h0PSI3MiIgdmlld0JveD0iMCAwIDcyIDcyIj48cGF0aCBmaWxsPSIjOTJkM2Y1IiBkPSJNNCAyOC4xOUM0IDE0LjgxNiAxNC4yODYgMy45NzYgMjcuODM3IDMuOTc2QzE1IDE5LjM0NCAyNi4yNSA0My43MjIgNTYuNCA0MS41NjNjNC4yNTYtLjMwNSA4Ljk0Ny0xLjc3OCAxMi41OTMtMy43MjR2MzAuMDg2YTEuMDEgMS4wMSAwIDAgMS0xLjAxIDEuMDExTDQgNjguOTU4eiIvPjxwYXRoIGZpbGw9IiM2MWIyZTQiIGQ9Ik0yMS43ODQgMTAuMDEyYy0zLjgyMSA3LjE3OC01Ljk1IDIxLjEyNyA2LjU1NiAzMy4zNDNjMCAwIDEwLjIzOSAxMi42NSA0MC42NTMgNC44ODVWMzcuMzVzLTExLjEwNiA3LjU5Mi0yNy41MjUgMi4zMzhDMjYuMDgzIDM0Ljc2NSAyMi4wNDMgMjMuMTYgMjIuNTU4IDE4LjkyYy4xODMtMS41Ljc4OS02LjA0Mi43ODktNi4wNDJzLjgzOS0zLjAxNC41NDUtMy44Yy0uMzQtLjkxMS0xLjgzNC40MTktMi4xMDguOTMzIi8+PHBhdGggZmlsbD0iIzkyZDNmNSIgZD0iTTQ0Ljg1NyA5LjcyMmMxLjY3NCAxLjkwNyAxLjU3OSA0LjcyMi0uMjEgNi4yOTNzLTQuNTk2IDEuMjk4LTYuMjctLjYwOGMwIDAtMi4wNy0yLjI4Ni0zLjAxOC04Ljg3NmMwIDAtLjI1MS0xLjMyLjk3OS0uOTZjNi40MTIgMS43OSA4LjUxOSA0LjE1MSA4LjUxOSA0LjE1MSIvPjxwYXRoIGZpbGw9IiM2MWIyZTQiIGQ9Ik0zNS40MSA2LjA1NWM0LjM1NC0uNiA5LjE2NiAzLjM4OCA5LjE2NiAzLjM4OGMyLjEzMyAyLjQzIDEuODYgNSAuMDcgNi41NzFjMCAwLS45OTctNS40NDItOS4yMzYtOS45NTkiLz48ZyBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2Utd2lkdGg9IjIiPjxwYXRoIHN0cm9rZS13aWR0aD0iMiIgZD0iTTY4IDQ3Ljg5NnYyMC4wNjJINFYyNy44MzNDNCAxMy4xNDggMTMuNTc5IDQgMjcuODM2IDMuOTk3Ii8+PHBhdGggc3Ryb2tlLXdpZHRoPSIyIiBkPSJNNjggMzcuNTA2QzY0LjM1MyAzOS40MjMgNjAuNjU2IDQwLjcgNTYuNCA0MUMyNi4yNSA0My4xMjUgMTUgMTkuMTI1IDI3LjgzNiAzLjk5NyIvPjxwYXRoIHN0cm9rZS13aWR0aD0iMiIgZD0iTTY4IDQ3Ljg5NmMtNC44MzMgMi42ODctMTEuMjUgMy4zNzEtMTkuMDE2IDIuOTg4Yy0zNC45OTMtMy4yNTktMzcuNjAzLTM2LjUtMjEuMTQ4LTQ2Ljg4NyIvPjxwYXRoIHN0cm9rZS13aWR0aD0iMS45IiBkPSJNNDQuODU3IDkuNzIyYzEuNjc0IDEuOTA3IDEuNTc5IDQuNzIyLS4yMSA2LjI5M3MtNC41OTYgMS4yOTgtNi4yNy0uNjA4YzAgMC0yLjA3LTIuMjg2LTMuMDE4LTguODc2YzAgMC0uMjUxLTEuMzIuOTc5LS45NmM2LjQxMiAxLjc5IDguNTE5IDQuMTUxIDguNTE5IDQuMTUxIi8+PHBhdGggc3Ryb2tlLXdpZHRoPSIyIiBkPSJNNjMuODc1IDYzLjI3OGMtMy40MjQgMC0zLjQyNC0yLjA1NS02Ljg0Ny0yLjA1NWMtMy40MjIgMC0zLjQyMiAyLjA1NS02Ljg0NCAyLjA1NWMtMy40MjUgMC0zLjQyNS0yLjA1NS02Ljg1LTIuMDU1Yy0zLjQyNyAwLTMuNDI3IDIuMDU1LTYuODU1IDIuMDU1cy0zLjQyNy0yLjA1NS02Ljg1NC0yLjA1NSIvPjwvZz48L3N2Zz4="></span> ${dayInfo.wave?dayInfo.wave:''}m</div>
+                  <div class="temperature icon-sp fade-in"><span><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBmaWxsPSIjZTUwYTBhIiBkPSJNMjAgMTBoN3YyaC03em0wIDZoMTB2MkgyMHptMCA2aDd2MmgtN3ptLTEwLTEuODE2VjdIOHYxMy4xODRhMyAzIDAgMSAwIDIgMCIvPjxwYXRoIGZpbGw9IiNlNTBhMGEiIGQ9Ik0zMCA0SDEyLjk3NEE0Ljk4MyA0Ljk4MyAwIDAgMCA0IDd2MTEuMTFhNyA3IDAgMSAwIDEwIDBWN2E1IDUgMCAwIDAtLjEwMS0xSDMwWk05IDI4YTQuOTkzIDQuOTkzIDAgMCAxLTMuMzMyLTguNzE4TDYgMTguOTgzVjdhMyAzIDAgMCAxIDYgMHYxMS45ODNsLjMzMi4yOTlBNC45OTMgNC45OTMgMCAwIDEgOSAyOCIvPjwvc3ZnPg=="></span>${dayInfo.temp}°C</div>
+                  <div class="humidity icon-sp fade-in"><span><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48ZyBmaWxsPSJub25lIiBzdHJva2U9IiMyMjhlZTAiIHN0cm9rZS13aWR0aD0iMiI+PHBhdGggZD0iTTEyIDIxLjVjNC4xMDEgMCA3LjUtMy4wNjMgNy41LTYuOTI5YzAtMi40MTUtMS4yMzMtNC44NTktMi42MjctNi44NjJjLTEuNDAzLTIuMDE3LTMuMDIyLTMuNjYtMy44OTUtNC40OTFhMS40MTMgMS40MTMgMCAwIDAtMS45NTYgMGMtLjg3My44My0yLjQ5MiAyLjQ3NC0zLjg5NSA0LjQ5MUM1LjczMyA5LjcxMiA0LjUgMTIuMTU2IDQuNSAxNC41NzFjMCAzLjg2NiAzLjM5OSA2LjkyOSA3LjUgNi45MjlaIi8+PHBhdGggc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBkPSJNMTIgMThhNCA0IDAgMCAxLTQtNCIvPjwvZz48L3N2Zz4="></span> ${dayInfo.humidity} %</div>
+                  <div class="wind-speed icon-sp fade-in"><span><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSIjMDAwIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik02LjI1IDUuNUEzLjI1IDMuMjUgMCAxIDEgOS41IDguNzVIM2EuNzUuNzUgMCAwIDEgMC0xLjVoNi41QTEuNzUgMS43NSAwIDEgMCA3Ljc1IDUuNXYuMzU3YS43NS43NSAwIDEgMS0xLjUgMHptOCAyYTQuMjUgNC4yNSAwIDEgMSA0LjI1IDQuMjVIMmEuNzUuNzUgMCAwIDEgMC0xLjVoMTYuNWEyLjc1IDIuNzUgMCAxIDAtMi43NS0yLjc1VjhhLjc1Ljc1IDAgMCAxLTEuNSAwem0tMTEgNi41YS43NS43NSAwIDAgMSAuNzUtLjc1aDE0LjVhNC4yNSA0LjI1IDAgMSAxLTQuMjUgNC4yNVYxN2EuNzUuNzUgMCAwIDEgMS41IDB2LjVhMi43NSAyLjc1IDAgMSAwIDIuNzUtMi43NUg0YS43NS43NSAwIDAgMS0uNzUtLjc1IiBjbGlwLXJ1bGU9ImV2ZW5vZGQiLz48L3N2Zz4="></span> ${dayInfo.wind.speed} km/h</div>
+                  <div class="wave icon-sp fade-in"><span><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3MiIgaGVpZ2h0PSI3MiIgdmlld0JveD0iMCAwIDcyIDcyIj48cGF0aCBmaWxsPSIjOTJkM2Y1IiBkPSJNNCAyOC4xOUM0IDE0LjgxNiAxNC4yODYgMy45NzYgMjcuODM3IDMuOTc2QzE1IDE5LjM0NCAyNi4yNSA0My43MjIgNTYuNCA0MS41NjNjNC4yNTYtLjMwNSA4Ljk0Ny0xLjc3OCAxMi41OTMtMy43MjR2MzAuMDg2YTEuMDEgMS4wMSAwIDAgMS0xLjAxIDEuMDExTDQgNjguOTU4eiIvPjxwYXRoIGZpbGw9IiM2MWIyZTQiIGQ9Ik0yMS43ODQgMTAuMDEyYy0zLjgyMSA3LjE3OC01Ljk1IDIxLjEyNyA2LjU1NiAzMy4zNDNjMCAwIDEwLjIzOSAxMi42NSA0MC42NTMgNC44ODVWMzcuMzVzLTExLjEwNiA3LjU5Mi0yNy41MjUgMi4zMzhDMjYuMDgzIDM0Ljc2NSAyMi4wNDMgMjMuMTYgMjIuNTU4IDE4LjkyYy4xODMtMS41Ljc4OS02LjA0Mi43ODktNi4wNDJzLjgzOS0zLjAxNC41NDUtMy44Yy0uMzQtLjkxMS0xLjgzNC40MTktMi4xMDguOTMzIi8+PHBhdGggZmlsbD0iIzkyZDNmNSIgZD0iTTQ0Ljg1NyA5LjcyMmMxLjY3NCAxLjkwNyAxLjU3OSA0LjcyMi0uMjEgNi4yOTNzLTQuNTk2IDEuMjk4LTYuMjctLjYwOGMwIDAtMi4wNy0yLjI4Ni0zLjAxOC04Ljg3NmMwIDAtLjI1MS0xLjMyLjk3OS0uOTZjNi40MTIgMS43OSA4LjUxOSA0LjE1MSA4LjUxOSA0LjE1MSIvPjxwYXRoIGZpbGw9IiM2MWIyZTQiIGQ9Ik0zNS40MSA2LjA1NWM0LjM1NC0uNiA5LjE2NiAzLjM4OCA5LjE2NiAzLjM4OGMyLjEzMyAyLjQzIDEuODYgNSAuMDcgNi41NzFjMCAwLS45OTctNS40NDItOS4yMzYtOS45NTkiLz48ZyBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2Utd2lkdGg9IjIiPjxwYXRoIHN0cm9rZS13aWR0aD0iMiIgZD0iTTY4IDQ3Ljg5NnYyMC4wNjJINFYyNy44MzNDNCAxMy4xNDggMTMuNTc5IDQgMjcuODM2IDMuOTk3Ii8+PHBhdGggc3Ryb2tlLXdpZHRoPSIyIiBkPSJNNjggMzcuNTA2QzY0LjM1MyAzOS40MjMgNjAuNjU2IDQwLjcgNTYuNCA0MUMyNi4yNSA0My4xMjUgMTUgMTkuMTI1IDI3LjgzNiAzLjk5NyIvPjxwYXRoIHN0cm9rZS13aWR0aD0iMiIgZD0iTTY4IDQ3Ljg5NmMtNC44MzMgMi42ODctMTEuMjUgMy4zNzEtMTkuMDE2IDIuOTg4Yy0zNC45OTMtMy4yNTktMzcuNjAzLTM2LjUtMjEuMTQ4LTQ2Ljg4NyIvPjxwYXRoIHN0cm9rZS13aWR0aD0iMS45IiBkPSJNNDQuODU3IDkuNzIyYzEuNjc0IDEuOTA3IDEuNTc5IDQuNzIyLS4yMSA2LjI5M3MtNC41OTYgMS4yOTgtNi4yNy0uNjA4YzAgMC0yLjA3LTIuMjg2LTMuMDE4LTguODc2YzAgMC0uMjUxLTEuMzIuOTc5LS45NmM2LjQxMiAxLjc5IDguNTE5IDQuMTUxIDguNTE5IDQuMTUxIi8+PHBhdGggc3Ryb2tlLXdpZHRoPSIyIiBkPSJNNjMuODc1IDYzLjI3OGMtMy40MjQgMC0zLjQyNC0yLjA1NS02Ljg0Ny0yLjA1NWMtMy40MjIgMC0zLjQyMiAyLjA1NS02Ljg0NCAyLjA1NWMtMy40MjUgMC0zLjQyNS0yLjA1NS02Ljg1LTIuMDU1Yy0zLjQyNyAwLTMuNDI3IDIuMDU1LTYuODU1IDIuMDU1cy0zLjQyNy0yLjA1NS02Ljg1NC0yLjA1NSIvPjwvZz48L3N2Zz4="></span> ${dayInfo.wave?dayInfo.wave:''}m</div>
                 </div>
               </div>
 
-              <img class="emoji-section" src="${source}" alt="weater emoji">
+              <img class="emoji-section scale-in" src="${source}" alt="weater emoji">
 
             </div>
 
           
-            
 
-            <div class="down-section">${erToUpcase(dayInfo.description)} &nbsp|<span class="feels-like">&nbsp Feels like ${dayInfo.feels_like}°C</span> </div>
+            <div class="down-section fade-in">${erToUpcase(dayInfo.description)} &nbsp|<span class="feels-like">&nbsp Feels like ${dayInfo.feels_like}°C</span> </div>
 
           </div>
         `
@@ -224,7 +322,7 @@ import {erToUpcase , wait} from './meh.js';
     displayMain()
       function display5DaysForecast(){
         let html = '';
-        daysForecast.forEach(day =>{
+        daysForecast.forEach((day, index) =>{
           const id = day.dayData.weather[0].id;
           let source = '';
           if (id >= 200 && id <= 232) {
@@ -245,7 +343,7 @@ import {erToUpcase , wait} from './meh.js';
               source ='https://cdn-icons-png.flaticon.com/512/414/414825.png';
             }
           html += `
-            <div class="forecast-item ${currentTheme}">
+            <div class="forecast-item ${currentTheme} fade-in" style="animation-delay: ${index * 0.1}s;">
               <img class="forecast-emoji ${currentTheme}" src="${source}" >
               <div class="day">${day.date}</div>
               <div class="forecast-infos">
